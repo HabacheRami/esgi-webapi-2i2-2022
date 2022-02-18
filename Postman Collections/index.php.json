@@ -10,7 +10,7 @@
       "item": [
         {
           "name": "get all posts",
-          "_postman_id": "21590f47-4eb0-46c4-aa82-c445c8409e6c",
+          "id": "21590f47-4eb0-46c4-aa82-c445c8409e6c",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -23,7 +23,7 @@
         },
         {
           "name": "create new post",
-          "_postman_id": "ad6b6f82-0da1-48ff-a867-718fd1f181f6",
+          "id": "ad6b6f82-0da1-48ff-a867-718fd1f181f6",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -35,27 +35,27 @@
           "response": []
         }
       ],
-      "_postman_id": "c074e090-d3bf-4060-ad76-d61d4fcc70f5"
+      "id": "c074e090-d3bf-4060-ad76-d61d4fcc70f5"
     },
     {
       "name": "users",
       "item": [
         {
           "name": "get all users",
-          "_postman_id": "39d68c0e-c93e-4f38-ba37-2ae51b139c9b",
+          "id": "39d68c0e-c93e-4f38-ba37-2ae51b139c9b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
           "request": {
             "method": "GET",
             "header": [],
-            "url": "http://localhost:8888/Cours3/users"
+            "url": "http://localhost:8888/Cours3/users/users"
           },
           "response": []
         },
         {
           "name": "create new user",
-          "_postman_id": "db67dfb9-5996-48ad-b28e-0a877219c383",
+          "id": "db67dfb9-5996-48ad-b28e-0a877219c383",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -67,14 +67,14 @@
           "response": []
         }
       ],
-      "_postman_id": "9f2253ad-6de6-421a-96e9-e009ff60580c"
+      "id": "9f2253ad-6de6-421a-96e9-e009ff60580c"
     },
     {
       "name": "comments",
       "item": [
         {
           "name": "get all comments",
-          "_postman_id": "f72499cd-ea4d-445e-95af-89c1d619570b",
+          "id": "f72499cd-ea4d-445e-95af-89c1d619570b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -87,7 +87,7 @@
         },
         {
           "name": "create new comments",
-          "_postman_id": "db64dd44-2fd0-4ffc-a300-1c6aa5250848",
+          "id": "db64dd44-2fd0-4ffc-a300-1c6aa5250848",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -99,14 +99,14 @@
           "response": []
         }
       ],
-      "_postman_id": "d7255a70-8ea5-4ebc-b36f-06f7b06ee372"
+      "id": "d7255a70-8ea5-4ebc-b36f-06f7b06ee372"
     },
     {
       "name": "albums",
       "item": [
         {
           "name": "get all albums",
-          "_postman_id": "b0b711cd-b1f1-404e-ae90-ff612504e272",
+          "id": "b0b711cd-b1f1-404e-ae90-ff612504e272",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -119,7 +119,7 @@
         },
         {
           "name": "create new album",
-          "_postman_id": "f08033e0-f44f-461b-8008-9b377d1098e5",
+          "id": "f08033e0-f44f-461b-8008-9b377d1098e5",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -131,14 +131,14 @@
           "response": []
         }
       ],
-      "_postman_id": "c8a55178-1ba5-4699-9e65-662285e347d2"
+      "id": "c8a55178-1ba5-4699-9e65-662285e347d2"
     },
     {
       "name": "photos",
       "item": [
         {
           "name": "get all photos",
-          "_postman_id": "41b8b737-d48f-4a5e-8e02-158d137af36e",
+          "id": "41b8b737-d48f-4a5e-8e02-158d137af36e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -151,7 +151,7 @@
         },
         {
           "name": "create new photo",
-          "_postman_id": "bbea6ef0-909f-4a92-823d-7b19f7c9c40a",
+          "id": "bbea6ef0-909f-4a92-823d-7b19f7c9c40a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -163,14 +163,14 @@
           "response": []
         }
       ],
-      "_postman_id": "9586b2ae-3d21-4a50-a0c1-71602b9a30a0"
+      "id": "9586b2ae-3d21-4a50-a0c1-71602b9a30a0"
     },
     {
       "name": "todos",
       "item": [
         {
           "name": "get all todos",
-          "_postman_id": "58bf89a4-1daa-4895-bc10-bd306480a5b9",
+          "id": "58bf89a4-1daa-4895-bc10-bd306480a5b9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -183,7 +183,7 @@
         },
         {
           "name": "create new todos",
-          "_postman_id": "59a000c8-c0f1-41f8-a428-80cafe6c497d",
+          "id": "59a000c8-c0f1-41f8-a428-80cafe6c497d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -195,7 +195,7 @@
           "response": []
         }
       ],
-      "_postman_id": "3f45d8c2-badc-407a-895c-a05371186750"
+      "id": "3f45d8c2-badc-407a-895c-a05371186750"
     }
   ]
 }
