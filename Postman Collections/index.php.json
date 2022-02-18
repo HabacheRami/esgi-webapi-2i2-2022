@@ -30,7 +30,7 @@
           "request": {
             "method": "POST",
             "header": [],
-            "url": "http://localhost:8888/Cours3/users"
+            "url": "http://localhost:8888/Cours3/posts"
           },
           "response": []
         }
