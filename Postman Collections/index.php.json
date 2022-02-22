@@ -32,7 +32,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\" : nairi.amin@gmail.com\",\r\n    \"password\" : \"motdepasse\"\r\n}"
+              "raw": "{\r\n    \"email\" : \"nairi.amin@gmail.com\",\r\n    \"password\" : \"motdepasse\"\r\n}"
             },
             "url": "http://localhost:8888/Cours3/posts"
           },

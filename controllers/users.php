@@ -5,10 +5,6 @@ include "./models/UserModel.php";
 
 final class User
 {
-    public function query()
-    {
-    }
-
     /**
      * @example
      * User::get();
@@ -41,6 +37,23 @@ final class User
         $headers = [
             "Content-Type" => "application/json"
         ];
+
+        $json = json_decode(file_get_contents("php://input"));
+        $name = $json->name;
+        $username = $json->username;
+        $website = $json->website;
+        $phone = $json->phone;
+        $email = $json->email;
+        $password = $json->password;
+
+        UserModel::create([
+            "name" => $name,
+            "username" => $username,
+            "website" => $website,
+            "phone" => $phone,
+            "email" => $email,
+            "password" => $password
+        ]);
 
         $body = [
             "success" => true
