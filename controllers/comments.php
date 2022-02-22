@@ -1,7 +1,11 @@
 <?php
 
 include "./library/response.php";
+<<<<<<< HEAD
 include "./models/CommentModel.php";
+=======
+include "./models/CommentsModel.php";
+>>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
 
 final class Comment
 {
@@ -18,7 +22,11 @@ final class Comment
         ];
 
         try {
+<<<<<<< HEAD
             $comments = CommentModel::fetchAll();
+=======
+            $comments = CommentsModel::getAll();
+>>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
             $body = ["success" => true, "comments" => $comments];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {

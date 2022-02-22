@@ -1,7 +1,11 @@
 <?php
 
 include "./library/response.php";
+<<<<<<< HEAD
 include "./models/PhotoModel.php";
+=======
+include "./models/PhotosModel.php";
+>>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
 
 final class Photo
 {
@@ -18,7 +22,11 @@ final class Photo
         ];
 
         try {
+<<<<<<< HEAD
             $photos = PhotoModel::fetchAll();
+=======
+            $photos = PhotosModel::getAll();
+>>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
             $body = ["success" => true, "photos" => $photos];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {

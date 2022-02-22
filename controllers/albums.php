@@ -1,7 +1,11 @@
 <?php
 
 include "./library/response.php";
+<<<<<<< HEAD
 include "./models/AlbumModel.php";
+=======
+include "./models/AlbumsModel.php";
+>>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
 
 final class Album
 {
@@ -18,7 +22,11 @@ final class Album
         ];
 
         try {
+<<<<<<< HEAD
             $albums = AlbumModel::fetchAll();
+=======
+            $albums = AlbumsModel::getAll();
+>>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
             $body = ["success" => true, "albums" => $albums];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
@@ -45,4 +53,3 @@ final class Album
         echo Response::json($statusCode, $headers, $body);
     }
 }
-

@@ -17,6 +17,11 @@ final class User
             "Content-Type" => "application/json"
         ];
 
+        UserModel::create([
+          "email" => "nairimain@gmail.com",
+          "password" => "motdepasse"
+        ]);
+
         try {
             $users = UserModel::getAll();
             $body = ["success" => true, "users" => $users];
@@ -62,4 +67,3 @@ final class User
         echo Response::json($statusCode, $headers, $body);
     }
 }
-
