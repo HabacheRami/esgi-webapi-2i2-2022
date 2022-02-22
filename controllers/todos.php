@@ -1,12 +1,7 @@
 <?php
 
 include "./library/response.php";
-<<<<<<< HEAD
 include "./models/TodoModel.php";
-=======
-include "./models/TodosModel.php";
->>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
-
 final class Todo
 {
     public function query()
