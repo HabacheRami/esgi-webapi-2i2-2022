@@ -2,12 +2,9 @@
 
 include "./library/response.php";
 include "./models/TodoModel.php";
+
 final class Todo
 {
-    public function query()
-    {
-    }
-
     /**
      * @example
      * User::get();
@@ -21,13 +18,9 @@ final class Todo
         ];
 
         try {
-<<<<<<< HEAD
             $todos = TodoModel::fetchAll();
             $body = ["success" => true, "todos" => $todos];
-=======
-            $users = TodosModel::getAll();
-            $body = ["success" => true, "todos" => $users];
->>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
+
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
             die($exception->getMessage());
@@ -45,6 +38,18 @@ final class Todo
         $headers = [
             "Content-Type" => "application/json"
         ];
+
+        $json = json_decode(file_get_contents("php://input"));
+        $userId = $json->userId;
+        $title = $json->title;
+        $completed = $json->completed;
+
+        TodoModel::create([
+            "userId" => $userId,
+            "title" => $title,
+            "completed" => $completed
+        ]);
+
 
         $body = [
             "success" => true
