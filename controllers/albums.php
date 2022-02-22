@@ -45,7 +45,7 @@ final class Album
 
         AlbumModel::create([
             "userId" => $userId,
-            "title" => $title,
+            "title" => $title
         ]);
 
         $body = [
