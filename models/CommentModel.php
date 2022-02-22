@@ -14,13 +14,13 @@ class CommentModel
     public static function create(array $commentToCreate)
     {
         include "./database/connection.php";
-        
+
 
         $postId = $commentToCreate["postId"];
         $name = $commentToCreate["name"];
         $email = $commentToCreate["email"];
         $bod = $commentToCreate["bod"];
-        $createCommentQuery = $databaseConnection->prepare("INSERT INTO todos (postId, name, email, body) VALUES(':postId', ':name', ':email', ':bod');");
+        $createCommentQuery = $databaseConnection->prepare("INSERT INTO comments (postId, name, email, body) VALUES(':postId', ':name', ':email', ':bod');");
         $createCommentQuery->bindParam(":postId", $postId);
         $createCommentQuery->bindParam(":name", $name);
         $createCommentQuery->bindParam(":email", $email);

@@ -16,7 +16,7 @@ class AlbumModel
 
         $title = $albumToCreate["title"];
         $userId = $albumToCreate["userId"];
-        $createAlbumQuery = $databaseConnection->prepare("INSERT INTO todos (userId, title) VALUES(':userId', ':title');");
+        $createAlbumQuery = $databaseConnection->prepare("INSERT INTO albums (userId, title) VALUES(':userId', ':title');");
         $createAlbumQuery->bindParam(":userId", $userId);
         $createAlbumQuery->bindParam(":title", $title);
         $createAlbumQuery->execute();

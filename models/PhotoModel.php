@@ -18,7 +18,7 @@ class PhotoModel
         $title = $photoToCreate["title"];
         $url = $photoToCreate["url"];
         $thumbnailUrl = $photoToCreate["thumbnailUrl"];
-        $createPhotoQuery = $databaseConnection->prepare("INSERT INTO todos (albumId, title, url, thumbnailUrl) VALUES(':albumId', ':title', ':url' , ':thumbnailUrl');");
+        $createPhotoQuery = $databaseConnection->prepare("INSERT INTO photos (albumId, title, url, thumbnailUrl) VALUES(':albumId', ':title', ':url' , ':thumbnailUrl');");
         $createPhotoQuery->bindParam(":albumId", $albumId);
         $createPhotoQuery->bindParam(":title", $title);
         $createPhotoQuery->bindParam(":url", $url);
