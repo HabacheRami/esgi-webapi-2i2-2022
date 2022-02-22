@@ -9,11 +9,7 @@ CREATE TABLE `users` (
     email VARCHAR(50) NOT NULL,
     phone CHAR(10) NOT NULL,
     website VARCHAR(50) NOT NULL,
-<<<<<<< HEAD
     password CHAR(60) NOT NULL
-=======
-    password VARCHAR(50) NOT NULL DEFAULT "11111"
->>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
 ) ENGINE = InnoDB;
 
 CREATE TABLE `posts` (
