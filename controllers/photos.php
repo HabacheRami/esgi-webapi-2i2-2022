@@ -18,11 +18,7 @@ final class Photo
         ];
 
         try {
-<<<<<<< HEAD
             $photos = PhotoModel::fetchAll();
-=======
-            $photos = PhotosModel::getAll();
->>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
             $body = ["success" => true, "photos" => $photos];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
@@ -41,6 +37,19 @@ final class Photo
         $headers = [
             "Content-Type" => "application/json"
         ];
+
+        $json = json_decode(file_get_contents("php://input"));
+        $albumId = $json->albumId;
+        $title = $json->title;
+        $url = $json->url;
+        $thumbnailUrl = $json->thumbnailUrl;
+
+        PhotoModel::create([
+            "albumId" => $albumId,
+            "title" => $title,
+            "url" => $url,
+            "thumbnailUrl" => $thumbnailUrl
+        ]);
 
         $body = [
             "success" => true

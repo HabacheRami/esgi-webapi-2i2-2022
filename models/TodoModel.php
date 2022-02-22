@@ -10,17 +10,17 @@ class TodoModel
         return $todos;
     }
 
-    public static function create(array $postToCreate)
+    public static function create(array $todoToCreate)
     {
         include "./database/connection.php";
 
-        $title = $postToCreate["title"];
-        $completed = $postToCreate["completed"];
-        $userId = $postToCreate["userId"];
-        $createPostQuery = $databaseConnection->prepare("INSERT INTO todos (userId, title, completed,) VALUES(':userId', ':title', ':completed');");
-        $createPostQuery->bindParam(":userId", $userId);
-        $createPostQuery->bindParam(":completed", $completed);
-        $createPostQuery->bindParam(":title", $title);
-        $createPostQuery->execute();
+        $title = $todoToCreate["title"];
+        $completed = $todoToCreate["completed"];
+        $userId = $todoToCreate["userId"];
+        $createTodoQuery = $databaseConnection->prepare("INSERT INTO todos (userId, title, completed) VALUES(':userId', ':title', ':completed');");
+        $createTodoQuery->bindParam(":userId", $userId);
+        $createTodoQuery->bindParam(":completed", $completed);
+        $createTodoQuery->bindParam(":title", $title);
+        $createTodoQuery->execute();
     }
 }

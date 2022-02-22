@@ -38,6 +38,17 @@ final class Post
             "Content-Type" => "application/json"
         ];
 
+        $json = json_decode(file_get_contents("php://input"));
+        $userId = $json->userId;
+        $title = $json->title;
+        $bod = $json->bod;
+
+        PostModel::create([
+            "userId" => $userId,
+            "title" => $title,
+            "bod" => $bod
+        ]);
+
         $body = [
             "success" => true
         ];

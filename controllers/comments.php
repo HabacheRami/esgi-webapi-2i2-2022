@@ -18,11 +18,7 @@ final class Comment
         ];
 
         try {
-<<<<<<< HEAD
             $comments = CommentModel::fetchAll();
-=======
-            $comments = CommentsModel::getAll();
->>>>>>> 281b28e8a3f318012318c21d1b7db56e788e453e
             $body = ["success" => true, "comments" => $comments];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
@@ -41,6 +37,20 @@ final class Comment
         $headers = [
             "Content-Type" => "application/json"
         ];
+        
+        $json = json_decode(file_get_contents("php://input"));
+        $postId = $json->postId;
+        $name = $json->name;
+        $email = $json->email;
+        $bod = $json->bod;
+
+        CommentModel::create([
+            "postId" => $postId,
+            "name" => $name,
+            "email" => $email,
+            "bod" => $bod
+
+        ]);
 
         $body = [
             "success" => true
