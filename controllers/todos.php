@@ -1,12 +1,17 @@
 <?php
 
 include "./library/response.php";
+include "./models/TodosModel.php";
 
 final class Todo
 {
+    public function query()
+    {
+    }
+
     /**
      * @example
-     * Todo::get();
+     * User::get();
      */
     final public static function get(): void
     {
@@ -17,8 +22,8 @@ final class Todo
         ];
 
         try {
-            $todos = [];
-            $body = ["success" => true, "todos" => $todos];
+            $users = TodosModel::getAll();
+            $body = ["success" => true, "todos" => $users];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
             die($exception->getMessage());
@@ -27,7 +32,7 @@ final class Todo
 
     /**
      * @example
-     * Todo::post();
+     * User::post();
      */
     final public static function post(): void
     {

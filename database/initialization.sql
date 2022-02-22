@@ -8,7 +8,8 @@ CREATE TABLE `users` (
     username VARCHAR(25) NOT NULL,
     email VARCHAR(50) NOT NULL,
     phone CHAR(10) NOT NULL,
-    website VARCHAR(50) NOT NULL
+    website VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL DEFAULT "11111"
 ) ENGINE = InnoDB;
 
 CREATE TABLE `posts` (

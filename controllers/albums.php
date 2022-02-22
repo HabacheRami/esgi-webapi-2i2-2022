@@ -1,6 +1,7 @@
 <?php
 
 include "./library/response.php";
+include "./models/AlbumsModel.php";
 
 final class Album
 {
@@ -17,7 +18,7 @@ final class Album
         ];
 
         try {
-            $albums = [];
+            $albums = AlbumsModel::getAll();
             $body = ["success" => true, "albums" => $albums];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
@@ -44,4 +45,3 @@ final class Album
         echo Response::json($statusCode, $headers, $body);
     }
 }
-

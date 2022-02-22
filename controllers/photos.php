@@ -1,6 +1,7 @@
 <?php
 
 include "./library/response.php";
+include "./models/PhotosModel.php";
 
 final class Photo
 {
@@ -17,7 +18,7 @@ final class Photo
         ];
 
         try {
-            $photos = [];
+            $photos = PhotosModel::getAll();
             $body = ["success" => true, "photos" => $photos];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {

@@ -1,6 +1,7 @@
 <?php
 
 include "./library/response.php";
+include "./models/CommentsModel.php";
 
 final class Comment
 {
@@ -17,7 +18,7 @@ final class Comment
         ];
 
         try {
-            $comments = [];
+            $comments = CommentsModel::getAll();
             $body = ["success" => true, "comments" => $comments];
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
