@@ -1,26 +1,26 @@
 <?php
 
+include "./database/connection.php";
+
 class TodoModel
 {
     public static function fetchAll()
     {
-        include "./database/connection.php";
+        $databaseConnection = Database::getConnection();
         $getTodosQuery = $databaseConnection->query("SELECT * FROM todos;");
         $todos = $getTodosQuery->fetchAll();
         return $todos;
     }
 
-    public static function create(array $todoToCreate)
+    public static function create($todoToCreate)
     {
-        include "./database/connection.php";
+        $databaseConnection = Database::getConnection();
+        $createTodoQuery = $databaseConnection->prepare("INSERT INTO todos(userId, title, completed) VALUES(:userId, :title, :completed);");
 
-        $title = $todoToCreate["title"];
-        $completed = $todoToCreate["completed"];
-        $userId = $todoToCreate["userId"];
-        $createTodoQuery = $databaseConnection->prepare("INSERT INTO todos (userId, title, completed) VALUES(':userId', ':title', ':completed');");
-        $createTodoQuery->bindParam(":userId", $userId);
-        $createTodoQuery->bindParam(":completed", $completed);
-        $createTodoQuery->bindParam(":title", $title);
-        $createTodoQuery->execute();
+        $createTodoQuery->execute([
+            "userId" => $todoToCreate["userId"],
+            "title" => $todoToCreate["title"],
+            "completed" => (int) $todoToCreate["completed"]
+        ]);
     }
 }

@@ -1,24 +1,25 @@
 <?php
 
+include __DIR__ . "/../database/connection.php";
+
 class AlbumModel
 {
     public static function fetchAll()
     {
-        include "./database/connection.php";
+        $databaseConnection = Database::getConnection();
         $getAlbumsQuery = $databaseConnection->query("SELECT * FROM albums");
         $albums = $getAlbumsQuery->fetchAll();
         return $albums;
     }
 
-    public static function create(array $albumToCreate)
+    public static function create($albumToCreate)
     {
-        include "./database/connection.php";
+        $databaseConnection = Database::getConnection();
+        $createAlbumQuery = $databaseConnection->prepare("INSERT INTO albums(userId, title) VALUES(:userId, :title);");
 
-        $title = $albumToCreate["title"];
-        $userId = $albumToCreate["userId"];
-        $createAlbumQuery = $databaseConnection->prepare("INSERT INTO albums (userId, title) VALUES(':userId', ':title');");
-        $createAlbumQuery->bindParam(":userId", $userId);
-        $createAlbumQuery->bindParam(":title", $title);
-        $createAlbumQuery->execute();
+        $createAlbumQuery->execute([
+            "userId" => $albumToCreate["userId"],
+            "title" => $albumToCreate["title"]
+        ]);
     }
 }

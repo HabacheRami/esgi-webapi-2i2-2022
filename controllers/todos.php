@@ -7,7 +7,7 @@ final class Todo
 {
     /**
      * @example
-     * User::get();
+     * Todo::get();
      */
     final public static function get(): void
     {
@@ -20,7 +20,6 @@ final class Todo
         try {
             $todos = TodoModel::fetchAll();
             $body = ["success" => true, "todos" => $todos];
-
             echo Response::json($statusCode, $headers, $body);
         } catch (PDOException $exception) {
             die($exception->getMessage());
@@ -29,31 +28,27 @@ final class Todo
 
     /**
      * @example
-     * User::post();
+     * Todo::post();
      */
     final public static function post(): void
     {
+        $json = json_decode(file_get_contents("php://input"));
+
         $statusCode = 200;
 
         $headers = [
             "Content-Type" => "application/json"
         ];
 
-        $json = json_decode(file_get_contents("php://input"));
-        $userId = $json->userId;
-        $title = $json->title;
-        $completed = $json->completed;
-
-        TodoModel::create([
-            "userId" => $userId,
-            "title" => $title,
-            "completed" => $completed
-        ]);
-
-
         $body = [
             "success" => true
         ];
+
+        TodoModel::create([
+            "userId" => $json->userId,
+            "title" => $json->title,
+            "completed" => $json->completed
+        ]);
 
         echo Response::json($statusCode, $headers, $body);
     }

@@ -32,26 +32,24 @@ final class Album
      */
     final public static function post(): void
     {
+        $json = json_decode(file_get_contents("php://input"));
+
         $statusCode = 200;
 
         $headers = [
             "Content-Type" => "application/json"
         ];
 
-        $json = json_decode(file_get_contents("php://input"));
-        $userId = $json->userId;
-        $title = $json->title;
-
-
-        AlbumModel::create([
-            "userId" => $userId,
-            "title" => $title
-        ]);
-
         $body = [
             "success" => true
         ];
 
+        AlbumModel::create([
+            "userId" => $json->userId,
+            "title" => $json->title
+        ]);
+
         echo Response::json($statusCode, $headers, $body);
     }
 }
+

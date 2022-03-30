@@ -17,27 +17,33 @@ final class User
             "Content-Type" => "application/json"
         ];
 
-        $requestHeaders = getallheaders()
+        // Factoriser le code
 
-        if(!isset($responseHeaders["token"])){
-          echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
-          die();
+        $requestHeaders = getallheaders();
 
+        if (!isset($requestHeaders["token"])) {
+            echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
+            die();
         }
 
-        $token=$requestHeaders["token"];
+        $token = $requestHeaders["token"];
+
+        // Headers::has("token");
+        // Headers::get("token");
 
         $user = UserModel::getOneByToken($token);
 
-        if(!isset($user){
-          echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
-          die();
-
+        if (!$user) {
+            echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
+            die();
         }
 
-        // Récupérer l'en-tête "token" => "4d48b99d4b684b6a1739feea983009fa234918185f6ec8e"
-        // Vérifier si un utilisateur existe pour ce token
-        // si l'utilisateur n'existe pas (pas connecté), on renvoit une erreur UNAUTHORIZED
+        // Validation::hasRole("ADMINISTRATOR", $user);
+
+        if ($user["role"] !== "ADMINISTRATOR") {
+            echo Response::json(403, $responseHeaders, ["success" => false, "error" => "Forbidden"]);
+            die();
+        }
 
         try {
             $users = UserModel::getAll();
@@ -56,9 +62,29 @@ final class User
     {
         $statusCode = 200;
 
-        $headers = [
+        $responseHeaders = [
             "Content-Type" => "application/json"
         ];
+
+        $requestHeaders = getallheaders();
+
+        if (!isset($requestHeaders["token"])) {
+            echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
+            die();
+        }
+
+        $token = $requestHeaders["token"];
+        $user = UserModel::getOneByToken($token);
+
+        if (!$user) {
+            echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
+            die();
+        }
+
+        if ($user["role"] !== "ADMINISTRATOR") {
+            echo Response::json(403, $responseHeaders, ["success" => false, "error" => "Forbidden"]);
+            die();
+        }
 
         $json = json_decode(file_get_contents("php://input"));
         $name = $json->name;
@@ -67,6 +93,7 @@ final class User
         $phone = $json->phone;
         $email = $json->email;
         $password = $json->password;
+        $role = $json->role;
 
         UserModel::create([
             "name" => $name,
@@ -74,13 +101,15 @@ final class User
             "website" => $website,
             "phone" => $phone,
             "email" => $email,
-            "password" => $password
+            "password" => $password,
+            "role" => $role
         ]);
 
         $body = [
             "success" => true
         ];
 
-        echo Response::json($statusCode, $headers, $body);
+        echo Response::json($statusCode, $responseHeaders, $body);
     }
 }
+

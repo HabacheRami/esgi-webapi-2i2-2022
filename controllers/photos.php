@@ -32,28 +32,24 @@ final class Photo
      */
     final public static function post(): void
     {
+        $json = json_decode(file_get_contents("php://input"));
+
         $statusCode = 200;
 
         $headers = [
             "Content-Type" => "application/json"
         ];
 
-        $json = json_decode(file_get_contents("php://input"));
-        $albumId = $json->albumId;
-        $title = $json->title;
-        $url = $json->url;
-        $thumbnailUrl = $json->thumbnailUrl;
-
-        PhotoModel::create([
-            "albumId" => $albumId,
-            "title" => $title,
-            "url" => $url,
-            "thumbnailUrl" => $thumbnailUrl
-        ]);
-
         $body = [
             "success" => true
         ];
+
+        PhotoModel::create([
+            "albumId" => $json->albumId,
+            "title" => $json->title,
+            "url" => $json->url,
+            "thumbnailUrl" => $json->thumbnailUrl
+        ]);
 
         echo Response::json($statusCode, $headers, $body);
     }

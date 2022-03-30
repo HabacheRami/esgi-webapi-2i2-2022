@@ -1,27 +1,26 @@
 <?php
 
+include "./database/connection.php";
 
 class PostModel
 {
     public static function getAll()
     {
-        include "./database/connection.php";
+        $databaseConnection = Database::getConnection();
         $getPostsQuery = $databaseConnection->query("SELECT * FROM posts;");
         $posts = $getPostsQuery->fetchAll();
         return $posts;
     }
 
-    public static function create(array $postToCreate)
+    public static function create($postToCreate)
     {
-        include "./database/connection.php";
+        $databaseConnection = Database::getConnection();
+        $createPostQuery = $databaseConnection->prepare("INSERT INTO posts(userId, title, body) VALUES(:userId, :title, :body);");
 
-        $title = $postToCreate["title"];
-        $bod = $postToCreate["bod"];
-        $userId = $postToCreate["userId"];
-        $createPostQuery = $databaseConnection->prepare("INSERT INTO posts (userId, title, body) VALUES(':userId', ':title', ':bod');");
-        $createPostQuery->bindParam(":userId", $userId);
-        $createPostQuery->bindParam(":body", $bod);
-        $createPostQuery->bindParam(":title", $title);
-        $createPostQuery->execute();
+        $createPostQuery->execute([
+            "userId" => $postToCreate["userId"],
+            "title" => $postToCreate["title"],
+            "body" => $postToCreate["body"]
+        ]);
     }
 }

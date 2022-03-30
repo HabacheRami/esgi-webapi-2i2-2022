@@ -32,29 +32,24 @@ final class Comment
      */
     final public static function post(): void
     {
+        $json = json_decode(file_get_contents("php://input"));
+
         $statusCode = 200;
 
         $headers = [
             "Content-Type" => "application/json"
         ];
-        
-        $json = json_decode(file_get_contents("php://input"));
-        $postId = $json->postId;
-        $name = $json->name;
-        $email = $json->email;
-        $bod = $json->bod;
-
-        CommentModel::create([
-            "postId" => $postId,
-            "name" => $name,
-            "email" => $email,
-            "bod" => $bod
-
-        ]);
 
         $body = [
             "success" => true
         ];
+
+        CommentModel::create([
+            "postId" => $json->postId,
+            "name" => $json->name,
+            "email" => $json->email,
+            "body" => $json->body
+        ]);
 
         echo Response::json($statusCode, $headers, $body);
     }
