@@ -29,4 +29,18 @@ class UserModel
         $createUserQuery->bindParam(":password", $password);
         $createUserQuery->execute();
     }
+
+    public static function getOneByToken(){
+      include "./database/connection/php";
+
+      $getUserQuery = $databaseConnection->prepare("SELECT token FROM users WHERE token = :token");
+      $user = $getUserQuery -> execute([
+        "token" => $token
+      ]);*
+
+      $user = $getUserQuery->fecth();
+
+      return $user
+
+    }
 }

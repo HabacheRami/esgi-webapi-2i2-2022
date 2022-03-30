@@ -13,16 +13,38 @@ final class User
     {
         $statusCode = 200;
 
-        $headers = [
+        $responseHeaders = [
             "Content-Type" => "application/json"
         ];
+
+        $requestHeaders = getallheaders()
+
+        if(!isset($responseHeaders["token"])){
+          echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
+          die();
+
+        }
+
+        $token=$requestHeaders["token"];
+
+        $user = UserModel::getOneByToken($token);
+
+        if(!isset($user){
+          echo Response::json(401, $responseHeaders, ["success" => false, "error" => "Unauthorized"]);
+          die();
+
+        }
+
+        // Récupérer l'en-tête "token" => "4d48b99d4b684b6a1739feea983009fa234918185f6ec8e"
+        // Vérifier si un utilisateur existe pour ce token
+        // si l'utilisateur n'existe pas (pas connecté), on renvoit une erreur UNAUTHORIZED
 
         try {
             $users = UserModel::getAll();
             $body = ["success" => true, "users" => $users];
-            echo Response::json($statusCode, $headers, $body);
+            echo Response::json($statusCode, $responseHeaders, $body);
         } catch (PDOException $exception) {
-            die($exception->getMessage());
+            echo Response::json(500, $responseHeaders, ["success" => false, "error" => $exception->getMessage()]);
         }
     }
 
